@@ -98,18 +98,66 @@ const smallerThanCurr = arr => {
 
 
 const twoSum = (arr, target) => {
-    
-
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i] > target) i++;  // skip overly large #'s & dont loop
+        for(let j = i + 1; j < arr.length - 1; j++) {
+            if(arr[i] + arr[j] === target) return true;
+        }
+        return false;
+    }
 };
-// Time Complexity: O() - 
-// Space Complexity: O() - 
+// Time Complexity: O(n^2) - must examine all combinations w nested loop
+// Space Complexity: O(1) - return just a boolean
+
+// const arr = [11, 4, 2, 3, 6, 9]; 
+// console.log(twoSum(arr, 10)); // => True
+// console.log(twoSum(arr, 16)); // => False
+
+
+let sorted = [];
+// HELPER FUNCTION, or use arr.sort() lines 120-123 \/
+const sortAscending = arr => {
+// const secondLargest = arr => {
+    // let sorted = arr.sort();    // easy method
+    // console.log(sorted);
+    // return sorted[sorted.length - 2];
+
+    // BASE CASE: original array is empty
+    if(arr.length === 0) return sorted;
+
+    // RECURSIVE CASE: find lowest number & push into new arr
+    let smallest = Infinity;
+    let index = 0;
+    for(let i = 0; i < arr.length; i++) {
+        let current = arr[i];
+        console.log(current);
+        if(current < smallest) smallest = current;
+        console.log(smallest);
+        index = arr.indexOf(smallest);
+        console.log(index);
+    }
+
+    arr.splice(index, 1);   // remove smallest # from arr
+    console.log(arr);
+    sorted.push(smallest);  // construct new array in order
+    console.log(sorted);
+    return sortAscending(arr);
+};
 
 const secondLargest = arr => {
+    if(arr.length === 0) return undefined;
+    let sorted = sortAscending(arr);
+    console.log(sorted);
+    return sorted[sorted.length - 2];
+}
 
+// Time Complexity: O(n^2) - assume sort() method uses nested loop
+// Space Complexity: O(1) - returning 1 number
 
-};
-// Time Complexity: O() - 
-// Space Complexity: O() - 
+// const arr = [4, 2, 3, 6, 8];
+// console.log(sortAscending(arr));
+// console.log(secondLargest(arr)); // => 6
+
 
 const shuffle = (arr) => {
 
