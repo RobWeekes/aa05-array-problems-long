@@ -115,12 +115,8 @@ const twoSum = (arr, target) => {
 
 
 let sorted = [];
-// HELPER FUNCTION, or use arr.sort() lines 120-123 \/
+// HELPER FUNCTION, or use arr.sort() lines 149-151 \/
 const sortAscending = arr => {
-// const secondLargest = arr => {
-    // let sorted = arr.sort();    // easy method
-    // console.log(sorted);
-    // return sorted[sorted.length - 2];
 
     // BASE CASE: original array is empty
     if(arr.length === 0) return sorted;
@@ -149,6 +145,9 @@ const secondLargest = arr => {
     let sorted = sortAscending(arr);
     console.log(sorted);
     return sorted[sorted.length - 2];
+    // let sorted = arr.sort();    // easy method
+    // console.log(sorted);
+    // return sorted[sorted.length - 2];
 }
 
 // Time Complexity: O(n^2) - assume sort() method uses nested loop
@@ -160,11 +159,52 @@ const secondLargest = arr => {
 
 
 const shuffle = (arr) => {
+    let indexObj = {};
+    
+    for(let i = 0; i < arr.length; i++) {
+        let randNum = Math.random();
+        console.log(randNum);
+        console.log(i);
+        indexObj[i] = randNum;
+    }   // generate object with i as keys and random values
+    console.log(indexObj);
+    
+    // sort i keys in ascending order
+    let shuffleOrder = [];
+    let randoms = Object.values(indexObj);
+    console.log(randoms);
+    let sorted = randoms.sort();
+    console.log(sorted);
 
+    for(let i = 0; i < randoms.length; i++) {
+        console.log(randoms.indexOf(sorted[i]))
+        indexObj[randoms.indexOf(sorted[i])] = randoms[i];
+    }
+    console.log(indexObj);
+    shuffleOrder.push();
+    
+    console.log(shuffleOrder);
 
+    // manual sorting takes 2 loops or recursion \/
+    // let shuffleOrder = [];
+    // let smallest = Infinity;
+    // let index;
+    // for(let i in indexObj) {
+    //     let value = indexObj[i];
+    //     // console.log(value);
+    //     if(value < smallest) {
+    //         value = smallest;
+    //         index = i;
+    //     }
+    // }
+    // console.log(index);
+    // shuffleOrder.push(index);
 };
 // Time Complexity: O() - 
 // Space Complexity: O() - 
+
+const arr = [2, 5, 1, 3, 4, 7];
+console.log(shuffle(arr)); // => [2, 3, 5, 4, 1, 7]
 
 
 module.exports = [findMinimum, runningSum, evenNumOfChars, smallerThanCurr, twoSum, secondLargest, shuffle];
