@@ -158,48 +158,38 @@ const secondLargest = arr => {
 // console.log(secondLargest(arr)); // => 6
 
 
-const shuffle = (arr) => {
-    let indexObj = {};
-    
-    for(let i = 0; i < arr.length; i++) {
+const shuffle = (arr) => {    
+    let length = arr.length;
+    let result = new Array(length).fill(null);
+    console.log(result);
+    let copyArr = [...arr];
+    console.log(copyArr);
+    for(let i = 0; i < length; i++) {
+        console.log(copyArr[i]);
         let randNum = Math.random();
-        console.log(randNum);
-        console.log(i);
-        indexObj[i] = randNum;
-    }   // generate object with i as keys and random values
-    console.log(indexObj);
-    
-    // sort i keys in ascending order
-    let shuffleOrder = [];
-    let randoms = Object.values(indexObj);
-    console.log(randoms);
-    let sorted = randoms.sort();
-    console.log(sorted);
+        // console.log(randNum);
+        let newIndex = Math.trunc(randNum * length);
+        console.log(newIndex);
 
-    for(let i = 0; i < randoms.length; i++) {
-        console.log(randoms.indexOf(sorted[i]))
-        indexObj[randoms.indexOf(sorted[i])] = randoms[i];
+        // while(copyArr.length > 0) {
+            if(result[newIndex] === null) {
+                console.log(result[newIndex]);
+                result[newIndex] = copyArr[i];
+                console.log(result[newIndex])
+                console.log(copyArr);
+                console.log(copyArr[newIndex]);
+                copyArr.splice(copyArr[newIndex], 1);
+                console.log(copyArr);
+            }
+            console.log(result);
+        // }
     }
-    console.log(indexObj);
-    shuffleOrder.push();
-    
-    console.log(shuffleOrder);
-
-    // manual sorting takes 2 loops or recursion \/
-    // let shuffleOrder = [];
-    // let smallest = Infinity;
-    // let index;
-    // for(let i in indexObj) {
-    //     let value = indexObj[i];
-    //     // console.log(value);
-    //     if(value < smallest) {
-    //         value = smallest;
-    //         index = i;
-    //     }
-    // }
-    // console.log(index);
-    // shuffleOrder.push(index);
+    console.log(result);
 };
+
+// faster method -- dont create a random sequence first, just clone a new array 
+// and reassign the values according to a random # each step thru for loop
+
 // Time Complexity: O() - 
 // Space Complexity: O() - 
 
